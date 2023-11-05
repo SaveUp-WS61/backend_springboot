@@ -38,6 +38,22 @@ public class CustomerController {
         return new ResponseEntity<List<Customer>>(customerRepository.findAll(), HttpStatus.OK);
     }
 
+    // EndPoint: localhost:8080/api/saveup/v1/customers/{id}
+    // Method: GET
+    @Transactional(readOnly = true)
+    @GetMapping("/customers/{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable int id) {
+        Customer customer = customerService.getCustomer(id);
+
+        if (customer != null) {
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundException("Customer not found with id " + id);
+        }
+    }
+
+
+
     //EndPoint: localhost:8080/api/saveup/v1/purchase/{customerId}/data
     @GetMapping("/purchase/{customerId}/data")
     public List<Map<String, Object>> getPurchaseData(@PathVariable int customerId) {
