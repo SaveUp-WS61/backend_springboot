@@ -35,7 +35,7 @@ public class Product {
     @Column(name = "expiration_date", length = 20, nullable = false)
     private String expirationDate;
 
-    @Column(name = "image", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "image", nullable = false)
     private String image;
 
     @JsonIgnore
