@@ -54,7 +54,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Map<String, Object>> getSaleData(int companyId) {
-        String query = "SELECT cu.name, cu.last_name, o.id as orders, pr.name as producto, pr.price, o.date, co.id as company_id " +
+        String query = "SELECT cu.name, cu.last_name, o.id as orders, pr.name as producto, pr.price, ca.quantity, o.date, co.id as company_id " +
                 "FROM saveup.company co " +
                 "INNER JOIN saveup.product pr ON co.id = pr.company_id " +
                 "INNER JOIN saveup.cart ca ON pr.id = ca.product_id " +

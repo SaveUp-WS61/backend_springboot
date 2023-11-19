@@ -22,4 +22,7 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "FK_cart_orders"))
     private Order order;
+
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
 }

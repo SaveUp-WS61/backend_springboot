@@ -11,4 +11,5 @@ public class CartDto {
     private int id;
     private int productId;
     private int orderId;
+    private int quantity;
 }
