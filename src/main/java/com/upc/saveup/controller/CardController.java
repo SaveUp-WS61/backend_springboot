@@ -59,8 +59,6 @@ public class CardController {
     @PostMapping("/cards")
     public ResponseEntity<Card> createCard(@RequestBody Card card) {
         validateCard(card);
-        existsCardByCardNumberAndCVV(card);
-        existsCustomerByCardName(card);
         existsCustomerByPCardNumber(card);
         existsCustomerById(card.getCustomerId());
         Card createdCard = cardService.createCard(card);
@@ -107,16 +105,7 @@ public class CardController {
         }
 
     }
-    private void existsCardByCardNumberAndCVV(Card card){
-        if(cardRepository.existsByCardNumberAndCvv(card.getCardNumber(), card.getCvv())){
-            throw new ValidationException("No se puede registrar la tarjeta porque existe uno con el card name y cvv");
-        }
-    }
-    private void existsCustomerByCardName(Card card){
-        if(cardRepository.existsByCardName(card.getCardName())){
-            throw new ValidationException("No se puede registrar la tarjeta porque existe uno con el card name");
-        }
-    }
+
     private void existsCustomerByPCardNumber(Card card){
         if(cardRepository.existsByCardNumber(card.getCardNumber())){
             throw new ValidationException("No se puede registrar la tarjeta porque existe uno con el card number");
