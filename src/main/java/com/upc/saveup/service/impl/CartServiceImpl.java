@@ -74,8 +74,8 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Map<String, Object>> getCartByOrder(int orderId) {
         String query = "SELECT p.id, p.description, p.expiration_date, p.image, p.name, p.price, p.stock, p.company_id " +
-                "FROM saveup.cart c " +
-                "INNER JOIN saveup.product p ON c.product_id = p.id " +
+                "FROM railway.cart c " +
+                "INNER JOIN railway.product p ON c.product_id = p.id " +
                 "WHERE c.order_id = ?";
 
         return jdbcTemplate.queryForList(query, orderId);

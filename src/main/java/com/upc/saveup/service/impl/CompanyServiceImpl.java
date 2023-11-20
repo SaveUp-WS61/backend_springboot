@@ -55,12 +55,12 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<Map<String, Object>> getSaleData(int companyId) {
         String query = "SELECT cu.name, cu.last_name, o.id as orders, pr.name as producto, pr.price, ca.quantity, o.date, co.id as company_id " +
-                "FROM saveup.company co " +
-                "INNER JOIN saveup.product pr ON co.id = pr.company_id " +
-                "INNER JOIN saveup.cart ca ON pr.id = ca.product_id " +
-                "INNER JOIN saveup.orders o ON ca.order_id = o.id " +
-                "INNER JOIN saveup.pay pa ON o.pay_id = pa.id " +
-                "INNER JOIN saveup.customer cu ON pa.customer_id = cu.id " +
+                "FROM railway.company co " +
+                "INNER JOIN railway.product pr ON co.id = pr.company_id " +
+                "INNER JOIN railway.cart ca ON pr.id = ca.product_id " +
+                "INNER JOIN railway.orders o ON ca.order_id = o.id " +
+                "INNER JOIN railway.pay pa ON o.pay_id = pa.id " +
+                "INNER JOIN railway.customer cu ON pa.customer_id = cu.id " +
                 "WHERE co.id = ? " +
                 "ORDER BY orders ASC;";
         return jdbcTemplate.queryForList(query, companyId);

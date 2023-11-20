@@ -54,12 +54,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Map<String, Object>> getPurchaseData(int customerId) {
         String query = "SELECT cu.id as customer_id, pr.name, co.name as empresa, o.date, pa.pay_address " +
-                "FROM saveup.customer cu " +
-                "INNER JOIN saveup.pay pa ON cu.id = pa.customer_id " +
-                "INNER JOIN saveup.orders o ON pa.id = o.pay_id " +
-                "INNER JOIN saveup.cart ca ON o.id = ca.order_id " +
-                "INNER JOIN saveup.product pr ON ca.product_id = pr.id " +
-                "INNER JOIN saveup.company co ON pr.company_id = co.id " +
+                "FROM railway.customer cu " +
+                "INNER JOIN railway.pay pa ON cu.id = pa.customer_id " +
+                "INNER JOIN railway.orders o ON pa.id = o.pay_id " +
+                "INNER JOIN railway.cart ca ON o.id = ca.order_id " +
+                "INNER JOIN railway.product pr ON ca.product_id = pr.id " +
+                "INNER JOIN railway.company co ON pr.company_id = co.id " +
                 "WHERE cu.id = ?";
         return jdbcTemplate.queryForList(query, customerId);
     }
